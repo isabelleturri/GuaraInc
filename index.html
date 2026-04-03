@@ -7,7 +7,7 @@
   <title>Guará Inc. — Affordable Rental Housing in Brazil</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Nunito:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Nunito:wght@300;400&family=Lora:ital,wght@0,400;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ===================== RESET & BASE ===================== */
@@ -71,12 +71,9 @@
       letter-spacing: -0.01em;
     }
 
-    .nav-logo-circle {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #E8302A;
-      flex-shrink: 0;
+    .nav-logo img {
+      height: 48px;
+      width: auto;
     }
 
     .nav-links {
@@ -181,43 +178,46 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: #F5F5F5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('imagem de capa.png');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.3) 100%);
     }
 
     .hero-container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      padding: 80px 0;
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
     }
 
-    .hero-image-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-img {
-      width: clamp(300px, 45vw, 500px);
-      height: clamp(300px, 45vw, 500px);
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    }
+    .hero-image-wrap { display: none; }
 
     .hero-text {}
 
     .hero-title {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
       font-weight: 600;
       line-height: 1.08;
-      color: #1A1A1A;
+      color: #FFFFFF;
       letter-spacing: -0.02em;
+      max-width: 700px;
     }
 
     .hero-title span {
@@ -225,11 +225,11 @@
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 300;
-      color: #555555;
+      color: rgba(255,255,255,0.85);
       margin-top: 1.5rem;
-      max-width: 440px;
+      max-width: 480px;
       line-height: 1.7;
     }
 
@@ -320,15 +320,127 @@
       align-items: start;
     }
 
-    .about-left {}
+    /* ── About redesign ── */
+    #about { background: #F5F5F5; }
 
-    .about-description {
-      font-size: 1rem;
+    .about-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    /* Block 1 — Manifesto */
+    .about-manifesto { max-width: 720px; }
+
+    .manifesto-line {
+      font-family: 'Lora', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #2C2C2C;
+      line-height: 1.65;
+      margin-bottom: 0.9rem;
+    }
+
+    .manifesto-line.bold {
+      font-weight: 600;
+    }
+
+    .manifesto-line .accent-red { color: #C8352A; }
+
+    .about-divider {
+      width: 32px;
+      height: 2px;
+      background: #C8352A;
+      margin: 1.8rem 0;
+      border-radius: 2px;
+    }
+
+    .manifesto-body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
       font-weight: 300;
-      color: #555;
-      margin-top: 1.5rem;
-      line-height: 1.8;
-      max-width: 380px;
+      color: #666;
+      line-height: 1.85;
+      max-width: 600px;
+      margin-bottom: 1.4rem;
+    }
+
+    .manifesto-body strong { font-weight: 500; color: #333; }
+
+    .manifesto-pullquote {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 400;
+      color: #2C2C2C;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* Block 2 — Team cards */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .team-card {
+      background: #FFFFFF;
+      border: 0.5px solid #DCDCDC;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .team-card:hover { transform: translateY(-4px); }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .team-info { padding: 1.3rem 1.4rem 1.5rem; }
+
+    .team-role {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #C8352A;
+      margin-bottom: 0.4rem;
+    }
+
+    .team-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1A1A1A;
+      margin-bottom: 0.6rem;
+    }
+
+    .team-tag {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: #888;
+      background: #F0F0F0;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .team-desc {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.7;
     }
 
     .team-grid {
@@ -373,7 +485,15 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #E8302A;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .team-name {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 0.4rem;
     }
 
     .team-desc {
@@ -740,8 +860,7 @@
   <!-- ===================== NAV ===================== -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <a href="#home" class="nav-logo" aria-label="Guará Inc. — Home">
-      <div class="nav-logo-circle" aria-hidden="true"></div>
-      Guará Inc.
+      <img src="guara_inc_transparent.png" alt="Guará Inc. Logo" />
     </a>
 
     <ul class="nav-links" id="navLinks">
@@ -768,80 +887,69 @@
 
   <!-- ===================== HERO ===================== -->
   <section id="home" aria-label="Hero">
+    <div class="hero-bg"></div>
     <div class="hero-container">
-      <div class="hero-image-wrap fade-in">
-        <img
-          class="hero-img"
-          src="https://picsum.photos/seed/housing/600/600"
-          alt="Modern residential condominium with green spaces"
-          loading="eager"
-        />
-      </div>
-      <div class="hero-text fade-in" style="transition-delay: 0.15s;">
+      <div class="hero-text fade-in">
         <h1 class="hero-title">
-          Helping Brazilians access <span>affordable</span> rental housing
+          Helping Brazilians access <span>affordable</span> housing
         </h1>
         <p class="hero-subtitle">
           By developing and operating quality rental communities designed for belonging.
         </p>
-        <div class="hero-buttons">
-          <button class="btn-circle btn-about" onclick="scrollTo('#about')" aria-label="Go to About section">About</button>
-          <button class="btn-circle btn-projects" onclick="scrollTo('#projects')" aria-label="Go to Projects section">Projects</button>
-          <button class="btn-circle btn-contact" onclick="scrollTo('#contact')" aria-label="Go to Contact section">Contact</button>
-        </div>
       </div>
     </div>
   </section>
+
 
   <!-- ===================== ABOUT ===================== -->
   <section id="about" aria-label="About">
     <div class="section-inner">
       <div class="about-layout">
-        <div class="about-left fade-in">
+
+        <!-- Block 1: Manifesto -->
+        <div class="about-manifesto fade-in">
           <p class="section-label">Our Team</p>
-          <h2 class="section-title">Meet Our<br>Team</h2>
-          <p class="about-description">
-            Our dedicated team at Guará Inc. brings a wealth of experience and passion to every project. We are committed to delivering top-notch built to rent housing tailored to meet your needs.
+
+          <p class="manifesto-line" style="margin-top: 1.8rem;">
+            In the <span class="accent-red">U.S.</span>, the affordable rental housing market has decades of consolidated expertise.
+          </p>
+          <p class="manifesto-line">
+            In <span class="accent-red">Brazil</span>, this market is just beginning — and the demand is urgent.
+          </p>
+          <p class="manifesto-line bold">
+            We built Guará to close that gap.
+          </p>
+
+          <div class="about-divider"></div>
+
+          <p class="manifesto-body">
+            Our team was formed at <strong>MIT</strong>, trained in institutional-grade real estate on both sides of the equation, and driven by a single conviction:
+          </p>
+          <p class="manifesto-pullquote">
+            "Brazil's housing deficit is not just a market opportunity — it's a social imperative."
           </p>
         </div>
+
+        <!-- Block 2: Team cards -->
         <div class="team-grid">
-          <div class="team-card fade-in" style="transition-delay: 0.1s;">
-            <img
-              class="team-photo"
-              src="https://i.pravatar.cc/300?img=11"
-              alt="Principal team member"
-              loading="lazy"
-            />
+          <a href="https://www.linkedin.com/in/isabelleturri/" target="_blank" rel="noopener noreferrer" class="team-card fade-in" style="transition-delay: 0.1s; text-decoration: none; color: inherit;">
+            <img class="team-photo" src="Isabelle Turri.jpg" alt="Isabelle Turri — Principal" loading="lazy" />
             <div class="team-info">
               <p class="team-role">Principal</p>
-              <p class="team-desc">A decade of multifamily development experience. MIT AI researcher on real estate communities, MIT Master of Science in Real Estate Development.</p>
+              <p class="team-name">Isabelle Turri <span class="team-tag">BR</span></p>
+              <p class="team-desc">MS in Real Estate Development, MIT. Founding team at Greystar Brazil — multifamily focus, managed R$1.7B asset value, R$1.1B raised.</p>
             </div>
-          </div>
-          <div class="team-card fade-in" style="transition-delay: 0.2s;">
-            <img
-              class="team-photo"
-              src="https://i.pravatar.cc/300?img=5"
-              alt="Principal team member"
-              loading="lazy"
-            />
+          </a>
+          <a href="https://www.linkedin.com/in/sophia-chou-107aaba4/" target="_blank" rel="noopener noreferrer" class="team-card fade-in" style="transition-delay: 0.2s; text-decoration: none; color: inherit;">
+            <img class="team-photo" src="Sophia Chou.jpg" alt="Sophia Chou — Principal" loading="lazy" />
             <div class="team-info">
               <p class="team-role">Principal</p>
-              <p class="team-desc">A decade of multifamily experience. MIT Master of Science in Real Estate Development.</p>
+              <p class="team-name">Sophia Chou <span class="team-tag">US</span></p>
+              <p class="team-desc">MS in Real Estate Development, MIT. A decade of multifamily experience — project managed $500M development value, 1,000+ units.</p>
             </div>
-          </div>
-          <div class="team-card fade-in" style="transition-delay: 0.3s;">
-            <img
-              class="team-photo"
-              src="https://i.pravatar.cc/300?img=32"
-              alt="Manager team member"
-              loading="lazy"
-            />
-            <div class="team-info">
-              <p class="team-role">Manager</p>
-              <p class="team-desc">Our manager coordinates efforts to guarantee timely delivery and exceptional quality in all our projects.</p>
-            </div>
-          </div>
+          </a>
         </div>
+
       </div>
     </div>
   </section>
