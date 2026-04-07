@@ -324,13 +324,14 @@
     #about { background: #F5F5F5; }
 
     .about-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: start;
     }
 
     /* Block 1 — Manifesto */
-    .about-manifesto { max-width: 720px; }
+    .about-manifesto { max-width: 100%; }
 
     .manifesto-line {
       font-family: 'Lora', serif;
@@ -445,8 +446,8 @@
 
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
 
     .team-card {
@@ -464,8 +465,10 @@
 
     .team-photo {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
+      object-position: center top;
+      display: block;
       filter: grayscale(100%);
       transition: filter 0.4s ease;
     }
@@ -475,7 +478,7 @@
     }
 
     .team-info {
-      padding: 1.1rem 1.2rem 1.3rem;
+      padding: 0.8rem 1rem 1rem;
     }
 
     .team-role {
@@ -501,6 +504,74 @@
       font-weight: 300;
       color: #666;
       line-height: 1.65;
+    }
+
+    .team-links {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .team-link-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .team-link-icon:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+    }
+
+    .team-link-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .team-link-icon.mit {
+      width: 80px;
+      height: 30px;
+    }
+
+    /* ===================== SPONSORS ===================== */
+    .sponsors-block {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid #E0E0E0;
+    }
+
+    .sponsors-row {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .sponsor-link {
+      display: flex;
+      align-items: center;
+      opacity: 0.75;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      filter: grayscale(100%);
+    }
+
+    .sponsor-link:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+      transform: translateY(-2px);
+    }
+
+    .sponsor-link img {
+      height: 72px;
+      width: auto;
+      object-fit: contain;
     }
 
     /* ===================== PROJECTS ===================== */
@@ -843,6 +914,110 @@
       section { padding: 70px 0; }
     }
 
+    /* ===================== EMAIL GATE ===================== */
+    #email-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    #email-gate.hidden {
+      display: none;
+    }
+
+    .gate-box {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 3rem 3.5rem;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+
+    .gate-logo {
+      height: 52px;
+      width: auto;
+      margin: 0 auto 2rem;
+    }
+
+    .gate-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .gate-subtitle {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #777;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .gate-input {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1.5px solid #DCDCDC;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      color: #1A1A1A;
+      outline: none;
+      transition: border-color 0.25s ease;
+      margin-bottom: 1rem;
+    }
+
+    .gate-input:focus {
+      border-color: #E8302A;
+    }
+
+    .gate-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: #E8302A;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .gate-btn:hover {
+      background: #C7241F;
+      transform: translateY(-1px);
+    }
+
+    .gate-btn:active { transform: translateY(0); }
+
+    .gate-error {
+      font-size: 0.8rem;
+      color: #E8302A;
+      margin-top: -0.5rem;
+      margin-bottom: 0.8rem;
+      display: none;
+    }
+
+    .gate-privacy {
+      font-size: 0.72rem;
+      color: #AAAAAA;
+      margin-top: 1rem;
+    }
+
     @media (max-width: 480px) {
       .team-grid {
         grid-template-columns: 1fr;
@@ -856,6 +1031,19 @@
 </head>
 
 <body>
+
+  <!-- ===================== EMAIL GATE ===================== -->
+  <div id="email-gate">
+    <div class="gate-box">
+      <img class="gate-logo" src="guara_inc_transparent.png" alt="Guará Inc." />
+      <h2 class="gate-title">Welcome to Guará Inc.</h2>
+      <p class="gate-subtitle">Enter your email to access our site.<br/>We'd love to know who's visiting.</p>
+      <input class="gate-input" type="email" id="gate-email" placeholder="your@email.com" autocomplete="email" />
+      <p class="gate-error" id="gate-error">Please enter a valid email address.</p>
+      <button class="gate-btn" id="gate-btn">Access Site →</button>
+      <p class="gate-privacy">Your email is kept private and never shared.</p>
+    </div>
+  </div>
 
   <!-- ===================== NAV ===================== -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
@@ -928,6 +1116,19 @@
           <p class="manifesto-pullquote">
             "Brazil's housing deficit is not just a market opportunity — it's a social imperative."
           </p>
+
+          <!-- Sponsors -->
+          <div class="sponsors-block fade-in">
+            <p class="section-label">Our Sponsors</p>
+            <div class="sponsors-row">
+              <a href="https://designx.mit.edu/" target="_blank" rel="noopener noreferrer" class="sponsor-link" aria-label="MIT DesignX">
+                <img src="mit designx.png" alt="MIT DesignX" />
+              </a>
+              <a href="https://sandbox.mit.edu/" target="_blank" rel="noopener noreferrer" class="sponsor-link" aria-label="MIT Sandbox">
+                <img src="MIT SANDBOX.png" alt="MIT Sandbox" />
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Block 2: Team cards -->
@@ -935,19 +1136,177 @@
           <a href="https://www.linkedin.com/in/isabelleturri/" target="_blank" rel="noopener noreferrer" class="team-card fade-in" style="transition-delay: 0.1s; text-decoration: none; color: inherit;">
             <img class="team-photo" src="Isabelle Turri.jpg" alt="Isabelle Turri — Principal" loading="lazy" />
             <div class="team-info">
-              <p class="team-role">Principal</p>
-              <p class="team-name">Isabelle Turri <span class="team-tag">BR</span></p>
-              <p class="team-desc">MS in Real Estate Development, MIT. Founding team at Greystar Brazil — multifamily focus, managed R$1.7B asset value, R$1.1B raised.</p>
+              <p class="team-role">Co-Founder & CEO</p>
+              <p class="team-name">Isabelle Turri 🇧🇷</p>
+              <p class="team-desc">Founding team at Greystar Brazil — managed R$1.7B in assets, raised R$1.1B. MS in Real Estate Development, MIT, where she researched AI applications in real estate operations with Professor James Scott at the MIT Transformation Lab.</p>
+              <div class="team-links">
+                <a href="https://www.linkedin.com/in/isabelleturri/" target="_blank" rel="noopener noreferrer" class="team-link-icon" aria-label="Isabelle Turri no LinkedIn">
+                  <img src="linkedin.png" alt="LinkedIn" />
+                </a>
+                <a href="https://cre.mit.edu/people/isabelle-turri/" target="_blank" rel="noopener noreferrer" class="team-link-icon mit" aria-label="Isabelle Turri no MIT">
+                  <img src="CRE_sub-brand_lockup_two-line_rgb_mit-red.png" alt="MIT" />
+                </a>
+              </div>
             </div>
           </a>
           <a href="https://www.linkedin.com/in/sophia-chou-107aaba4/" target="_blank" rel="noopener noreferrer" class="team-card fade-in" style="transition-delay: 0.2s; text-decoration: none; color: inherit;">
             <img class="team-photo" src="Sophia Chou.jpg" alt="Sophia Chou — Principal" loading="lazy" />
             <div class="team-info">
-              <p class="team-role">Principal</p>
-              <p class="team-name">Sophia Chou <span class="team-tag">US</span></p>
-              <p class="team-desc">MS in Real Estate Development, MIT. A decade of multifamily experience — project managed $500M development value, 1,000+ units.</p>
+              <p class="team-role">Co-Founder & COO</p>
+              <p class="team-name">Sophia Chou 🇺🇸</p>
+              <p class="team-desc">A decade of U.S. multifamily experience — project-managed $500M in development value across 1,000+ units. MS in Real Estate Development, MIT.</p>
+              <div class="team-links">
+                <a href="https://www.linkedin.com/in/sophia-chou-107aaba4/" target="_blank" rel="noopener noreferrer" class="team-link-icon" aria-label="Sophia Chou no LinkedIn">
+                  <img src="linkedin.png" alt="LinkedIn" />
+                </a>
+                <a href="https://cre.mit.edu/people/sophia-chou/" target="_blank" rel="noopener noreferrer" class="team-link-icon mit" aria-label="Sophia Chou no MIT">
+                  <img src="CRE_sub-brand_lockup_two-line_rgb_mit-red.png" alt="MIT" />
+                </a>
+              </div>
             </div>
           </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== DIFFERENTIALS ===================== -->
+  <section id="differentials" aria-label="Diferenciais">
+    <style>
+      #differentials {
+        background: #1A1A18;
+        padding: 100px 0;
+      }
+      .diff-inner {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .diff-eyebrow {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #C8352A;
+        margin-bottom: 1rem;
+      }
+      .diff-heading {
+        font-family: 'Lora', serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 400;
+        color: #F5F2ED;
+        line-height: 1.2;
+        margin-bottom: 64px;
+        max-width: 480px;
+      }
+      .diff-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2px;
+      }
+      .diff-card {
+        padding: 40px 32px;
+        background: #222220;
+        transition: background 0.3s ease;
+      }
+      .diff-card:hover { background: #2a2a28; }
+      .diff-card:hover .diff-num { color: #C8352A; }
+      .diff-num {
+        font-family: 'Lora', serif;
+        font-size: 64px;
+        font-weight: 400;
+        color: #333330;
+        line-height: 1;
+        margin-bottom: 24px;
+        transition: color 0.3s ease;
+      }
+      .diff-bar {
+        width: 24px;
+        height: 2px;
+        background: #C8352A;
+        margin-bottom: 20px;
+      }
+      .diff-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #F5F2ED;
+        margin-bottom: 16px;
+      }
+      .diff-body {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 300;
+        color: #888884;
+        line-height: 1.8;
+      }
+      .diff-body em {
+        color: #C8C8C4;
+        font-style: normal;
+      }
+      @media (max-width: 768px) {
+        .diff-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <div class="diff-inner">
+      <p class="diff-eyebrow">Differentials</p>
+      <h2 class="diff-heading">What sets us apart.</h2>
+
+      <div class="diff-grid">
+
+        <div class="diff-card fade-in">
+          <div style="width:100%; aspect-ratio:16/9; border-radius:6px; overflow:hidden; margin-bottom:28px;">
+            <video
+              src="1 diferenciasi.mp4"
+              autoplay muted loop playsinline
+              style="width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.4); transform-origin:center center;"
+            ></video>
+          </div>
+          <div class="diff-num">01</div>
+          <div class="diff-bar"></div>
+          <div class="diff-title">AI-Native, Full-Stack</div>
+          <p class="diff-body">Proprietary AI agents reduce site underwriting
+          from <em>90 days to under 4 hours</em>. Our digital twin integrates
+          municipal data, satellite imagery, and financial feasibility into a
+          single model — giving investors <em>real-time visibility</em> into
+          every assumption before ground breaks. Less guesswork. Lower risk.</p>
+        </div>
+
+        <div class="diff-card fade-in">
+          <video
+            src="Video_de_Imóvel_Antes_e_Depois.mp4"
+            autoplay muted loop playsinline
+            style="width:100%; border-radius:6px; margin-bottom:28px; display:block;"
+          ></video>
+          <div class="diff-num">02</div>
+          <div class="diff-bar"></div>
+          <div class="diff-title">Designed for Belonging</div>
+          <p class="diff-body">We keep what works in favelas —
+          <em>community, density, identity</em> — and deliver it with safety,
+          durability, and professional management. Not soulless units.
+          Rental communities.</p>
+        </div>
+
+        <div class="diff-card fade-in">
+          <div style="width:100%; aspect-ratio:16/9; border-radius:6px; overflow:hidden; margin-bottom:28px;">
+            <video
+              src="Vídeo_Gerado_Sem_Som_e_Texto.mp4"
+              autoplay muted loop playsinline
+              style="width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.4); transform-origin:center center;"
+            ></video>
+          </div>
+          <div class="diff-num">03</div>
+          <div class="diff-bar"></div>
+          <div class="diff-title">First Mover</div>
+          <p class="diff-body">The only operator structured for Brazil's first
+          affordable rental PPP program. The market window opened in
+          <em>January 2026</em>. We were already inside.</p>
         </div>
 
       </div>
@@ -955,119 +1314,284 @@
   </section>
 
   <!-- ===================== PROJECTS ===================== -->
-  <section id="projects" aria-label="Projects">
-    <div class="section-inner">
-      <div class="projects-header fade-in">
-        <p class="section-label">Portfolio</p>
-        <h2 class="section-title">Our Work</h2>
+  <section id="projects" aria-label="Portfolio">
+    <style>
+      #projects {
+        background: #F5F2ED;
+        padding: 100px 0;
+      }
+      .portfolio-inner {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .portfolio-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 64px;
+      }
+      .portfolio-eyebrow {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #C8352A;
+        margin-bottom: 0.75rem;
+      }
+      .portfolio-title {
+        font-family: 'Lora', serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 400;
+        color: #1A1A18;
+        line-height: 1.1;
+      }
+      .portfolio-meta {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: #888;
+        text-align: right;
+        line-height: 1.7;
+      }
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .p-card {
+        background: #FFFFFF;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        cursor: default;
+      }
+      .p-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+      }
+      .p-visual {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        overflow: hidden;
+      }
+      .p-visual-recife { background: #1A1A18; }
+      .p-visual-campo  { background: #2A1A18; }
+      .p-visual-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 28px 32px;
+        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+      }
+      .p-city {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #C8352A;
+        margin-bottom: 6px;
+      }
+      .p-name {
+        font-family: 'Lora', serif;
+        font-size: 2rem;
+        font-weight: 400;
+        color: #F5F2ED;
+        line-height: 1.1;
+      }
+      .p-visual-bg {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.06;
+      }
+      .p-visual-bg span {
+        font-family: 'Lora', serif;
+        font-size: 200px;
+        font-weight: 400;
+        color: #F5F2ED;
+        line-height: 1;
+        user-select: none;
+      }
+      .p-body { padding: 32px; }
+      .p-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-bottom: 28px;
+        border: 0.5px solid #E8E5E0;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .p-stat {
+        padding: 16px 20px;
+        border-right: 0.5px solid #E8E5E0;
+      }
+      .p-stat:last-child { border-right: none; }
+      .p-stat-value {
+        font-family: 'Lora', serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #1A1A18;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .p-stat-value span { color: #C8352A; }
+      .p-stat-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #AAAAAA;
+      }
+      .p-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+      .p-desc strong { font-weight: 500; color: #333; }
+      .p-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+      .p-tag {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #C8352A;
+        border: 0.5px solid #C8352A33;
+        padding: 4px 12px;
+        border-radius: 3px;
+      }
+      .p-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #1D9E75;
+        margin-bottom: 20px;
+      }
+      .p-status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #1D9E75;
+        animation: pulse-green 2s ease-in-out infinite;
+      }
+      @keyframes pulse-green {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.5; transform: scale(1.4); }
+      }
+      @media (max-width: 768px) {
+        .portfolio-grid { grid-template-columns: 1fr; }
+        .portfolio-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        .portfolio-meta { text-align: left; }
+      }
+    </style>
+
+    <div class="portfolio-inner">
+
+      <div class="portfolio-header fade-in">
+        <div>
+          <p class="portfolio-eyebrow">Portfolio</p>
+          <h2 class="portfolio-title">Our Work</h2>
+        </div>
+        <p class="portfolio-meta">Active pipeline<br>Brazil · 2026</p>
       </div>
 
-      <!-- Project 1 -->
-      <div class="project-item fade-in">
-        <div class="project-text">
-          <p class="project-number">Project 01</p>
-          <h3 class="project-title">Housi Recife</h3>
-          <ul class="project-bullets">
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Affordable:</strong> 300 mixed-income homes including 100 for 30% AMI households, 50 for 50% AMI households, 50 for 60% AMI households, and 100 for market-rate households.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Transit-oriented:</strong> Located in the heart of Recife, just two short blocks to the Village MBTA Commuter Rail Station, and adjacent to the 14, 30, 34, 34E, 35, 36, 37, 40, 50, and 51 bus routes.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Sustainable:</strong> Enterprise Green certified, solar ready, and zero emissions building.</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <img
-            class="project-photo"
-            src="https://picsum.photos/seed/recife/600/400"
-            alt="Housi Recife residential project"
-            loading="lazy"
-          />
-        </div>
-      </div>
+      <div class="portfolio-grid">
 
-      <!-- Project 2 -->
-      <div class="project-item reverse fade-in">
-        <div class="project-text">
-          <p class="project-number">Project 02</p>
-          <h3 class="project-title">Jardins Campo Grande</h3>
-          <ul class="project-bullets">
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Middle-income:</strong> 125 family-sized affordable ownership opportunities.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Transit-oriented:</strong> 0.3 mile to the Commuter Rail Station.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Sustainable:</strong> All electric, and zero emissions building.</span>
-            </li>
-          </ul>
+        <!-- PROJECT 01: CAIS RECIFE -->
+        <div class="p-card fade-in">
+          <div class="p-visual p-visual-recife" style="background-image: url('6cbfc42c-f075-4615-a82e-8db891e0b136.png'); background-size: cover; background-position: center;">
+            <div class="p-visual-overlay">
+              <p class="p-city">Recife, Pernambuco</p>
+              <h3 class="p-name">Cais Recife</h3>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="p-status"><div class="p-status-dot"></div>Active — Road Show</div>
+            <div class="p-stats">
+              <div class="p-stat">
+                <div class="p-stat-value">1<span>,</span>128</div>
+                <div class="p-stat-label">Units</div>
+              </div>
+              <div class="p-stat">
+                <div class="p-stat-value">25<span>yr</span></div>
+                <div class="p-stat-label">Concession</div>
+              </div>
+              <div class="p-stat">
+                <div class="p-stat-value">4<span>+</span></div>
+                <div class="p-stat-label">Sites</div>
+              </div>
+            </div>
+            <p class="p-desc">
+              Social rental housing in the heart of historic Recife.
+              Four developments under a 25-year government concession —
+              <strong>land provided, debt subsidized.</strong>
+              Investors fund only the gap. Proposals due May 2026.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">Locação Social</span>
+              <span class="p-tag">Gov. Concession</span>
+              <span class="p-tag">Northeast Brazil</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <img
-            class="project-photo"
-            src="https://picsum.photos/seed/jardins/600/400"
-            alt="Jardins Campo Grande housing project"
-            loading="lazy"
-          />
-        </div>
-      </div>
 
-      <!-- Project 3 -->
-      <div class="project-item fade-in">
-        <div class="project-text">
-          <p class="project-number">Project 03</p>
-          <h3 class="project-title">Copan Building</h3>
-          <ul class="project-bullets">
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Mixed-income:</strong> 62 mixed-income units including 28 affordable, 19 middle-income, and 5 market-rate homes.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Transit-oriented:</strong> 0.4 miles from the Commuter Rail.</span>
-            </li>
-            <li>
-              <span class="bullet-icon" aria-hidden="true">
-                <svg viewBox="0 0 10 10"><path d="M1.5 5.5l2.5 2.5 4.5-5"/></svg>
-              </span>
-              <span><strong>Sustainable:</strong> Passive House certified all-electric Enterprise Green.</span>
-            </li>
-          </ul>
+        <!-- PROJECT 02: SERRA CAMPO GRANDE -->
+        <div class="p-card fade-in" style="transition-delay: 0.15s;">
+          <div class="p-visual p-visual-campo" style="background-image: url('Gemini_Generated_Image_jqfjtxjqfjtxjqfj.png'); background-size: cover; background-position: center;">
+            <div class="p-visual-overlay">
+              <p class="p-city">Campo Grande, Mato Grosso do Sul</p>
+              <h3 class="p-name">Serra Campo Grande</h3>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="p-status"><div class="p-status-dot"></div>Active — Structuring</div>
+            <div class="p-stats">
+              <div class="p-stat">
+                <div class="p-stat-value">817</div>
+                <div class="p-stat-label">Units</div>
+              </div>
+              <div class="p-stat">
+                <div class="p-stat-value">25<span>yr</span></div>
+                <div class="p-stat-label">Concession</div>
+              </div>
+              <div class="p-stat">
+                <div class="p-stat-value">R$<span>122</span>M</div>
+                <div class="p-stat-label">Total Value</div>
+              </div>
+            </div>
+            <p class="p-desc">
+              Brazil's first affordable rental PPP program.
+              Working-class families in Campo Grande's
+              <strong>3,000+ person waitlist</strong> —
+              land and subsidized debt from the city,
+              institutional capital funds the rest.
+            </p>
+            <div class="p-tags">
+              <span class="p-tag">Brazil's First BTR PPP</span>
+              <span class="p-tag">Gov. Concession</span>
+              <span class="p-tag">Central-West Brazil</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <img
-            class="project-photo"
-            src="https://picsum.photos/seed/copan/600/400"
-            alt="Copan Building residential project"
-            loading="lazy"
-          />
-        </div>
+
       </div>
     </div>
   </section>
@@ -1075,33 +1599,10 @@
   <!-- ===================== CONTACT ===================== -->
   <section id="contact" aria-label="Contact">
     <div class="section-inner">
-      <div class="contact-info-row fade-in">
+      <div class="contact-info-row fade-in" style="grid-template-columns: 1fr;">
         <div class="contact-col">
           <p class="contact-label">Phone</p>
-          <p class="contact-value">123-456-7890</p>
-        </div>
-        <div class="contact-col">
-          <p class="contact-label">Email</p>
-          <p class="contact-value">
-            <a href="mailto:info@mysite.com" style="color:#FFFFFF; border-bottom: 1px solid #444; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#E8302A'" onmouseout="this.style.borderColor='#444'">info@mysite.com</a>
-          </p>
-        </div>
-        <div class="contact-col">
-          <p class="contact-label">Follow Us</p>
-          <div class="social-icons">
-            <!-- LinkedIn -->
-            <a href="#" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-              </svg>
-            </a>
-            <!-- X / Twitter -->
-            <a href="#" aria-label="X (Twitter)">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-          </div>
+          <p class="contact-value">+1 (617) 251-1816</p>
         </div>
       </div>
 
@@ -1132,12 +1633,51 @@
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
-    <p class="footer-copy">© 2035 By Guará Inc.</p>
-    <p class="footer-tagline">Built with ❤️ in Brazil</p>
+    <p class="footer-copy">© 2026 By Guará Inc.</p>
+    <p class="footer-tagline">Born at MIT, built with the brazilian soul</p>
   </footer>
 
   <!-- ===================== JAVASCRIPT ===================== -->
   <script>
+    // ── Email Gate ────────────────────────────────────────────────
+    const gate       = document.getElementById('email-gate');
+    const gateBtn    = document.getElementById('gate-btn');
+    const gateEmail  = document.getElementById('gate-email');
+    const gateError  = document.getElementById('gate-error');
+
+    // Se já acessou antes, não mostra o gate
+    if (localStorage.getItem('guara_gate_passed')) {
+      gate.classList.add('hidden');
+    }
+
+    function submitGate() {
+      const email = gateEmail.value.trim();
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRe.test(email)) {
+        gateError.style.display = 'block';
+        return;
+      }
+
+      gateError.style.display = 'none';
+      gateBtn.textContent = 'Entering…';
+      gateBtn.disabled = true;
+
+      // ⚠️ Substitua pela sua URL do Formspree: https://formspree.io/f/SEU_ID
+      fetch('https://formspree.io/f/xwvwyvwy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'Email Gate — Guará Inc.' })
+      })
+      .finally(() => {
+        localStorage.setItem('guara_gate_passed', '1');
+        gate.classList.add('hidden');
+      });
+    }
+
+    gateBtn.addEventListener('click', submitGate);
+    gateEmail.addEventListener('keydown', e => { if (e.key === 'Enter') submitGate(); });
+
     // ── Smooth scroll helper ──────────────────────────────────────
     function scrollTo(target) {
       const el = document.querySelector(target);
@@ -1219,16 +1759,35 @@
       }
 
       const btn = this.querySelector('.btn-send');
-      btn.textContent = 'Message Sent ✓';
-      btn.style.background = '#28a745';
+      btn.textContent = 'Sending…';
       btn.disabled = true;
-      this.reset();
 
-      setTimeout(() => {
-        btn.textContent = 'Send Message';
-        btn.style.background = '';
+      fetch('https://formspree.io/f/xwvwyvwy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, message, source: 'Contact Form — Guará Inc.' })
+      })
+      .then(res => {
+        if (res.ok) {
+          btn.textContent = 'Message Sent ✓';
+          btn.style.background = '#28a745';
+          this.reset();
+          setTimeout(() => {
+            btn.textContent = 'Send Message';
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          btn.textContent = 'Error — Try Again';
+          btn.style.background = '#C8352A';
+          btn.disabled = false;
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Error — Try Again';
+        btn.style.background = '#C8352A';
         btn.disabled = false;
-      }, 4000);
+      });
     });
 
     // ── SVG checkmark stroke for bullets ─────────────────────────
